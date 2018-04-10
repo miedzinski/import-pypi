@@ -6,14 +6,21 @@ import sys
 
 def install(pkgname, version=None):
     cmd = [sys.executable, '-m', 'pip', 'install']
+    version_specs = ('>=', '>', '<=', '<', '==')
     if version:
-        cmd.append('{}=={}'.format(pkgname, version))
+        version_spec = '=='
+        if any([str.startswith(version, v) for v in version_specs]):
+            version_spec, version = [
+                (version[:len(v)], version[len(v):]) for v in version_specs
+                if version.startswith(v)
+            ][0]
+        cmd.append('{}{}{}'.format(pkgname, version_spec, version))
     else:
         cmd.append(pkgname)
     subprocess.check_call(
         cmd,
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
+        # stdout=subprocess.DEVNULL,
+        # stderr=subprocess.DEVNULL,
     )
 
 
