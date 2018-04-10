@@ -19,8 +19,8 @@ def install(pkgname, version=None):
         cmd.append(pkgname)
     subprocess.check_call(
         cmd,
-        # stdout=subprocess.DEVNULL,
-        # stderr=subprocess.DEVNULL,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
     )
 
 

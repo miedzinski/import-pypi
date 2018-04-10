@@ -32,6 +32,18 @@ import django
 print(django.__version__)  # 2.0.3
 ```
 
+For loose version specification use comparison operator as with regular pip 
+command
+
+```python
+import pypi
+
+pypi.install('Django', '>=2.0.1')
+pypi.install('Django', '<1.9')
+# all <=, <, ==, >, >= operators works as well
+
+```
+
 # License
 
 GNU GPLv3.
